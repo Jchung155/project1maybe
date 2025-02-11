@@ -7,12 +7,12 @@ public class ShootScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+      RB.linearVelocity = transform.right * Speed;  
     }
 
     // Update is called once per frame
     void Update()
     {
-        RB.linearVelocity = transform.forward * Speed;
+        
     }
 }

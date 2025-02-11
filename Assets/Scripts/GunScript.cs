@@ -8,7 +8,9 @@ public class GunScript : MonoBehaviour
     public GameObject player;
     private Camera cam;
     public float degreeChange = 40;
-    public GameObject shoot;
+    public GameObject bullet;
+    public GameObject muzzle; 
+    //public Bullet BulletPrefab;
     void Start()
     {
         cam = Camera.main;
@@ -25,11 +27,14 @@ public class GunScript : MonoBehaviour
         //gameObject.transform.rotation = Quaternion.Euler(0f, 0f, deg);
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         transform.RotateAround(player.transform.position, Vector3.forward, deg-degreeChange);
+        //muzzle.Rotate = Quaternion.Euler(0, 0, deg);
 
         if (Input.GetMouseButton(0))
         {
-            Instantiate(shoot, transform.position, transform.rotation);
+            Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, deg));
         }
+
+        //player.
     }
 }
 
