@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        Vector2 vel = new Vector2(0,RB.velocity.y);
+        Vector2 vel = new Vector2(0,RB.linearVelocity.y);
      
         if (Input.GetKey(KeyCode.D))
         {
@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour
             vel.x = -speed;
             //GetComponent<SpriteRenderer>().flipX = true;
         }    
-        if (Input.GetKey(KeyCode.Space) && RB.velocity.y == 0)
+        if (Input.GetKey(KeyCode.Space) && RB.linearVelocity.y == 0)
         {
             vel.y = jumpSpeed;
         }
-        RB.velocity = vel;
+        RB.linearVelocity = vel;
         //Debug.Log(RB.velocity.y);
         float angle = Vector3.Angle(transform.position, Input.mousePosition);
         Debug.Log(angle);
