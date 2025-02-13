@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float xResistance;
     public float yResistance;
     private Vector2 finalVel;
+    public float maxSpeedX;
+    public float maxSpeedY;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Space))
             {
-                finalVel = vel + pushVel;
+                finalVel += vel + pushVel;
             }
             else
             {
@@ -69,7 +71,16 @@ public class PlayerController : MonoBehaviour
             {
                 finalVel.y -= yResistance;
             }
+
+            
+            if(finalVel.x > maxSpeedX) finalVel.x = maxSpeedX;
+            if(finalVel.x < -maxSpeedX) finalVel.x = -maxSpeedX;
+            if(finalVel.y > maxSpeedY) finalVel.y = maxSpeedY;
+            if(finalVel.y < -maxSpeedY) finalVel.y = -maxSpeedY;
+
             RB.linearVelocity = finalVel;
+            
+            
             //if we wanted to make a system for acceleration, simply set max velocity values for x and y, make movement velocity based but make push acceleration based and change the acceleration amount by the push vector. Using acceleration may solve your gravity problem.
         }
     }

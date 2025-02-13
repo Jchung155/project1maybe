@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.851, y: 0.5263, z: 0}
-  m_LocalScale: {x: 0.2653, y: 0.2653, z: 0.2653}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RB: {fileID: 1543581273679796492}
   Speed: 10
+  destroyTime: 10
 --- !u!50 &1543581273679796492
 Rigidbody2D:
   serializedVersion: 5
