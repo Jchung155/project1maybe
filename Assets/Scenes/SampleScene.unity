@@ -997,14 +997,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RB: {fileID: 1761517041}
-  speed: 3
+  speed: 0.05
   jumpSpeed: 7
   dead: 0
-  pushSpeed: 6
+  pushSpeed: 0.025
   pushVel: {x: 0, y: 0}
   vel: {x: 0, y: 0}
-  xResistance: 0.0015
+  xResistance: 0.0025
   yResistance: 0.0025
+  maxSpeedX: 8
+  maxSpeedY: 8
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
