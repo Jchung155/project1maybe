@@ -216,7 +216,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91834566}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -298,6 +298,9 @@ MonoBehaviour:
   degreeChange: 45
   bullet: {fileID: 7173620540778393359, guid: f9d3d07f43e14754a83a06c1d326a5bd, type: 3}
   muzzle: {fileID: 411126793}
+  lastShotTime: 0
+  shotDelay: 0.01
+  PlayerScript: {fileID: 1761517045}
 --- !u!1 &411126793
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,7 +816,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.04, y: -4.15, z: 0}
-  m_LocalScale: {x: 20.65977, y: 2.866994, z: 1}
+  m_LocalScale: {x: 20.65977, y: 2.866994, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -853,7 +856,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -929,7 +932,7 @@ Transform:
   m_GameObject: {fileID: 1761517040}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3986696, y: -0.6075969, z: 0}
+  m_LocalPosition: {x: 1.3986696, y: -0.6075969, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -997,6 +1000,7 @@ MonoBehaviour:
   speed: 7
   jumpSpeed: 7
   dead: 0
+  pushSpeed: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

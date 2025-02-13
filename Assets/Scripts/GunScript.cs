@@ -9,7 +9,10 @@ public class GunScript : MonoBehaviour
     private Camera cam;
     public float degreeChange = 40;
     public GameObject bullet;
-    public GameObject muzzle; 
+    public GameObject muzzle;
+    public float lastShotTime;
+    public float shotDelay = 0.01f;
+    public PlayerController PlayerScript;
     //public Bullet BulletPrefab;
     void Start()
     {
@@ -19,6 +22,7 @@ public class GunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         gameObject.transform.position = new Vector2(player.transform.position.x+1, player.transform.position.y+1);
         Vector3 mousePos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition);
         float angle = Mathf.Atan2(mousePos.y - player.transform.position.y, mousePos.x - player.transform.position.x);
@@ -30,11 +34,17 @@ public class GunScript : MonoBehaviour
         //muzzle.Rotate = Quaternion.Euler(0, 0, deg);
 
         if (Input.GetMouseButton(0))
-        {
-            Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, deg));
+        {   
+            if (Time.time >= lastShotTime)
+            {
+                //add the current time to the button delay
+                lastShotTime = Time.time + shotDelay;
+                Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, deg));
+                PlayerScript.Push(deg);
+            }
         }
 
-        //player.
+    
     }
 }
 
