@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +8,11 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     public bool dead = false;
     public float pushSpeed = 2f;
+    public Vector2 pushVel;
+    public Vector2 vel;
+    public float xResistance;
+    public float yResistance;
+    private Vector2 finalVel;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,35 +24,53 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if(!dead){
-        //Vector2 vel = new Vector2(0,RB.linearVelocity.y);
+         vel = new Vector2(0,0);
      
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-                //vel.x = speed;
+                vel.x = speed;
                // RB.linearVelocity = new Vector2(RB.linearVelocityX + speed, RB.linearVelocityY);
                 //GetComponent<SpriteRenderer>().flipX = false;
         }
         
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-             
-                //RB.linearVelocity = new Vector2(RB.linearVelocityX - speed, RB.linearVelocityY);
-                
-        }
 
             if (Input.GetKey(KeyCode.A))
         {
-            //vel.x = -speed;
-            //GetComponent<SpriteRenderer>().flipX = true;
+            vel.x = -speed;
+            GetComponent<SpriteRenderer>().flipX = true;
         }    
         if (Input.GetKey(KeyCode.Space) && RB.linearVelocity.y == 0)
         {
-            //vel.y = jumpSpeed;
+            vel.y = jumpSpeed;
         }
-        
-        //Debug.Log(RB.velocity.y);
-        //float angle = Vector3.Angle(transform.position, Input.mousePosition);
-        //Debug.Log(angle);
+
+            //Debug.Log(RB.velocity.y);
+            //float angle = Vector3.Angle(transform.position, Input.mousePosition);
+            //Debug.Log(angle);
+
+            if (Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Space))
+            {
+                finalVel = vel + pushVel;
+            }
+            else
+            {
+                finalVel = RB.linearVelocity;
+                pushVel = Vector2.zero;
+            }
+            if(finalVel.x > 0)
+            {
+                finalVel.x -= xResistance;
+            }
+            if(finalVel.x < 0)
+            {
+                finalVel.x += xResistance;
+            }
+            if(finalVel.y > -8)
+            {
+                finalVel.y -= yResistance;
+            }
+            RB.linearVelocity = finalVel;
+            //if we wanted to make a system for acceleration, simply set max velocity values for x and y, make movement velocity based but make push acceleration based and change the acceleration amount by the push vector. Using acceleration may solve your gravity problem.
         }
     }
 
@@ -66,7 +90,7 @@ public class PlayerController : MonoBehaviour
     public void Push(float deg)
     {
         Debug.Log(deg);
-        RB.linearVelocity = new Vector2(Mathf.Cos((deg-180) * Mathf.Deg2Rad) * pushSpeed, Mathf.Sin((deg-180) * Mathf.Deg2Rad) * pushSpeed);
+        pushVel = new Vector2(Mathf.Cos((deg-180) * Mathf.Deg2Rad) * pushSpeed, Mathf.Sin((deg-180) * Mathf.Deg2Rad) * pushSpeed);
         Debug.Log(RB.linearVelocity.x);
     }
 }
