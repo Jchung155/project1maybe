@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class ShootScript : MonoBehaviour
+public class BulletScript : MonoBehaviour
 {
     public Rigidbody2D RB;
     public float Speed = 2f;
@@ -10,7 +10,7 @@ public class ShootScript : MonoBehaviour
     void Start()
     {
         // Test stuff
-        RB.linearVelocity = new Vector2(Mathf.Cos((transform.eulerAngles.z)*Mathf.Deg2Rad)*Speed, Mathf.Sin((transform.eulerAngles.z)*Mathf.Deg2Rad)*Speed);
+        //RB.linearVelocity = new Vector2(Mathf.Cos((transform.eulerAngles.z)*Mathf.Deg2Rad)*Speed, Mathf.Sin((transform.eulerAngles.z)*Mathf.Deg2Rad)*Speed);
        //RB.linearVelocity = transform.right * Speed;  
     }
 

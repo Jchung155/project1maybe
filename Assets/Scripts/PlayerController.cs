@@ -50,15 +50,29 @@ public class PlayerController : MonoBehaviour
             //float angle = Vector3.Angle(transform.position, Input.mousePosition);
             //Debug.Log(angle);
 
-            if (Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Space))
+            finalVel = RB.linearVelocity;
+
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
             {
-                finalVel += vel + pushVel;
+                finalVel.x += vel.x;
             }
-            else
+
+            if (Input.GetKey(KeyCode.Space))
             {
-                finalVel = RB.linearVelocity;
-                pushVel = Vector2.zero;
+                finalVel.y += vel.y;
             }
+
+            if (Input.GetMouseButton(0))
+            {
+                finalVel += pushVel;
+            } else pushVel = Vector2.zero;
+            
+
+          //  if (!((Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Space))))
+          // {
+          //      finalVel = RB.linearVelocity;
+          //  }
+           
             if(finalVel.x > 0)
             {
                 finalVel.x -= xResistance;

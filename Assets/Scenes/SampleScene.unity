@@ -300,7 +300,9 @@ MonoBehaviour:
   muzzle: {fileID: 411126793}
   lastShotTime: 0
   shotDelay: 0.01
-  PlayerScript: {fileID: 1761517045}
+  playerScript: {fileID: 1761517045}
+  bulletScript: {fileID: 0}
+  bulletSpeed: 10
 --- !u!1 &411126793
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +858,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.55
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -997,16 +999,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RB: {fileID: 1761517041}
-  speed: 0.05
-  jumpSpeed: 7
+  speed: 0.02
+  jumpSpeed: 5
   dead: 0
-  pushSpeed: 0.025
+  pushSpeed: 0.035
   pushVel: {x: 0, y: 0}
   vel: {x: 0, y: 0}
   xResistance: 0.0025
-  yResistance: 0.0025
-  maxSpeedX: 8
-  maxSpeedY: 8
+  yResistance: 0.0015
+  maxSpeedX: 10
+  maxSpeedY: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

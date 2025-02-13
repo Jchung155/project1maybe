@@ -12,8 +12,9 @@ public class GunScript : MonoBehaviour
     public GameObject muzzle;
     public float lastShotTime;
     public float shotDelay = 0.01f;
-    public PlayerController PlayerScript;
-    //public Bullet BulletPrefab;
+    public PlayerController playerScript;
+    public BulletScript bulletScript;
+    public float bulletSpeed = 2f;
     void Start()
     {
         cam = Camera.main;
@@ -39,8 +40,11 @@ public class GunScript : MonoBehaviour
             {
                 //add the current time to the button delay
                 lastShotTime = Time.time + shotDelay;
-                Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, deg));
-                PlayerScript.Push(deg);
+                //Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, deg)).RB.linearVelocity = new Vector2(Mathf.Cos((deg)*Mathf.Deg2Rad)*bulletSpeed, Mathf.Sin((deg)*Mathf.Deg2Rad)*bulletSpeed);
+                GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, deg)) as GameObject;
+                bulletScript = newBullet.GetComponent<BulletScript>();
+                bulletScript.RB.linearVelocity = new Vector2(Mathf.Cos((deg)*Mathf.Deg2Rad)*bulletSpeed, Mathf.Sin((deg)*Mathf.Deg2Rad)*bulletSpeed);
+                playerScript.Push(deg);
             }
         }
 
