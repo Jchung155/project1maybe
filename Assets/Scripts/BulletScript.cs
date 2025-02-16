@@ -11,7 +11,10 @@ public class BulletScript : MonoBehaviour
     {
         // Test stuff
         //RB.linearVelocity = new Vector2(Mathf.Cos((transform.eulerAngles.z)*Mathf.Deg2Rad)*Speed, Mathf.Sin((transform.eulerAngles.z)*Mathf.Deg2Rad)*Speed);
-       //RB.linearVelocity = transform.right * Speed;  
+        //RB.linearVelocity = transform.right * Speed;  
+
+        float size = Random.Range(0.20f, 0.40f);
+        transform.localScale = new Vector3(size, size, size);
     }
 
     // Update is called once per frame

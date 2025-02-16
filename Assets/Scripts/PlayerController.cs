@@ -1,9 +1,11 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D RB;
+    public Collider2D Collider;
     public float speed;
     public float jumpSpeed;
     public bool dead = false;
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 finalVel;
     public float maxSpeedX;
     public float maxSpeedY;
+    public float torque = 20;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +26,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(!dead){
          vel = new Vector2(0,0);
@@ -106,9 +109,15 @@ public class PlayerController : MonoBehaviour
 
     public void Die(){
     dead = true;
-    transform.position = new Vector3(transform.position.x, transform.position.y, 20);
+    //transform.position = new Vector3(transform.position.x, transform.position.y, 20);
 
     Debug.Log("Dead");
+    Collider.isTrigger = true;
+    RB.freezeRotation = false;
+        RB.AddTorque(torque);
+        int sign = Random.Range(1, 2);
+        if (sign == 2) sign = -1;         
+        RB.linearVelocity = new Vector2(Random.Range(1.0f, 3.0f)*sign, Random.Range(3.0f,5.0f));
 
     }
 
