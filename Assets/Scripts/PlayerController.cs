@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -18,11 +17,13 @@ public class PlayerController : MonoBehaviour
     public float maxSpeedX;
     public float maxSpeedY;
     public float torque = 20;
+    public float currentCapacity;
+    public float maxCapacity = 3000f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
- 
+        currentCapacity = maxCapacity;
     }
 
     // Update is called once per frame
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour
                 finalVel.y += vel.y;
             }
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && currentCapacity > 0)
             {
                 finalVel += pushVel;
             } else pushVel = Vector2.zero;
@@ -105,6 +106,11 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Hazard") && !dead) Die();
+        if (other.gameObject.CompareTag("Refill"))
+        {
+            refillTank();
+            Destroy(other.gameObject);
+        }
     }
 
     public void Die(){
@@ -126,5 +132,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log(deg);
         pushVel = new Vector2(Mathf.Cos((deg-180) * Mathf.Deg2Rad) * pushSpeed, Mathf.Sin((deg-180) * Mathf.Deg2Rad) * pushSpeed);
         Debug.Log(RB.linearVelocity.x);
+    }
+
+    public void refillTank()
+    {
+        currentCapacity = maxCapacity;
     }
 }

@@ -20,6 +20,7 @@ public class GunScript : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        //playerScript = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -36,8 +37,9 @@ public class GunScript : MonoBehaviour
             gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             transform.RotateAround(player.transform.position, Vector3.forward, deg - degreeChange);
             //muzzle.Rotate = Quaternion.Euler(0, 0, deg);
+            //Debug.Log(playerScript.currentCapacity);
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && playerScript.currentCapacity > 0)
             {
                 if (Time.time >= lastShotTime)
                 {
@@ -50,6 +52,7 @@ public class GunScript : MonoBehaviour
                     bulletScript.RB.linearVelocity = new Vector2(Mathf.Cos((randomDeg) * Mathf.Deg2Rad) * bulletSpeed, Mathf.Sin((randomDeg) * Mathf.Deg2Rad) * bulletSpeed);
                     //Debug.Log(deg);
                     playerScript.Push(deg);
+                    playerScript.currentCapacity--;
                 }
             }
 
